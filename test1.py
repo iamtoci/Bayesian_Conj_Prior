@@ -9,22 +9,20 @@ def bayes_beta_dist(size):
     tails = heads
     n = len(heads)
     m = len(tails)
-    fig, ax = plt.subplots(n,m,figsize=(size*1.615, size))
+ #   fig, ax = plt.subplots(n,m,figsize=(size*1.615, size))
     for row in range(n):
         for col in range(m):
             x = np.linspace(0.0,1.0,100)
-            ax[row,col].plot(x,beta.pdf(x,heads[row]+1,tails[col]+1), linewidth=2)
-            ax[row,col].set_title("Heads: {}      Tails: {}"
-                                  .format(str(heads[row]),str(tails[col])), fontsize=size, y=1.1)
-            ax[row,col].yaxis.set_visible(False)
-            ax[row,col].xaxis.set_visible(False)
+            plt.plot(x,beta.pdf(x,heads[row]+1,tails[col]+1), linewidth=2)
+    plt.yaxis.set_visible(False)
+    plt.xaxis.set_visible(False)
 
 
     plt.suptitle('Conjugate Prior of Coin Bias', fontsize = size*4, y=.98)
     plt.subplots_adjust(hspace=.75)
-#    plt.show()
+    plt.show()
     return fig
 
 if __name__ == '__main__':
     fig = bayes_beta_dist(10)
-    fig.savefig('conjugate_prior.png')
+   # fig.savefig('conjugate_prior.png')
